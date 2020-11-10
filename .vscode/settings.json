@@ -1,0 +1,7 @@
+{
+    "python.pythonPath": "/root/.local/share/virtualenvs/airbnb-clone-HKbZhr9v/bin/python3",
+    "python.pipenvPath": "/usr/local/bin/pipenv",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
+}
