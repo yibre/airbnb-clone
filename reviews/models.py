@@ -13,8 +13,12 @@ class Review(core_models.TimeStampedModel):
     location = models.IntegerField()
     check_in = models.IntegerField()
     value = models.IntegerField()
-    user = models.ForeignKey("users.User", on_delete=models.CASCADE) # 유저가 삭제되면 리뷰도 삭제
-    room = models.ForeignKey("rooms.Room", on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        "users.User", related_name="reviews", on_delete=models.CASCADE
+    ) # user가 삭제되면 review도 삭제
+    room = models.ForeignKey(
+        "rooms.Room", related_name="reviews", on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return f"{self.review} - {self.room}"
