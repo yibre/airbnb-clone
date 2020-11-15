@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 절대 경로를 나타냄
 
 
 # Quick-start development settings - unsuitable for production
@@ -134,3 +135,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User' # 우리가 직접 만든 user 모델을 쓰기 위해 추가함. 반드시 User Model을 바꿔야한다는 법칙은 없음.
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "uploads") # 결과물 절대경로/uploads
+
+MEDIA_URL = "/media/"

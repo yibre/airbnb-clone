@@ -29,7 +29,7 @@ class User(AbstractUser):
     CURRENCY_KRW = "krw"
     CURRENCY_CHOICES = ((CURRENCY_USD, "USD"), (CURRENCY_KRW, "KRW"))
     
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(upload_to = "avatars", blank=True)
     gender = models.CharField(choices = GENDER_CHOICES ,max_length = 10, blank=True)
     #gender filed는 비어있어도 괜찮다는 뜻.
     bio = models.TextField(blank=True)

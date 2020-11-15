@@ -6,5 +6,20 @@ from . import models
 @admin.register(models.User)
 class CustomUserAdmin(UserAdmin):
     """Custom User Admin"""
+    list_filter = UserAdmin.list_filter + ("superhost",)
+    # userAdmin의 리스트를 가져올 것임 그리고 그 사람이 superhost인지 아닌지만 알고 싶음
+    list_display = (
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "is_active",
+        "language",
+        "currency",
+        "superhost",
+        "is_staff",
+        "is_superuser",
+    )
+
     #fieldset 안에 들어가는 것이 blueset이 됨.
     fieldsets = UserAdmin.fieldsets + (("Custom Profile", {"fields": ("avatar", "gender", "bio", "birthdate", "language", "currency", "superhost",)},),)

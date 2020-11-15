@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings # 장고에서 setting을 import 하는 방법
+from django.conf.urls.static import static # static 파일 제공을 도와주는 것들
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+if settings.DEBUG: # 만약 DEBUG 모드가 true로 설정되어 있다면(즉 노란색 페이지가 뜬다면)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# media 폴더를 제공하고 싶다. 
