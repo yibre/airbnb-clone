@@ -76,9 +76,9 @@ class Room(models.Model):
     house_rules = models.ManyToManyField("HouseRule", related_name="rooms", blank=True)
 
 
-    def save(self, *args, **kwargs): # save method overide
+    def save(self, *args, **kwargs):
         self.city = str.capitalize(self.city)
-        super(ModelName, self).save(*args, **kwargs) # call the real save methods
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return self.name
@@ -88,6 +88,8 @@ class Room(models.Model):
     def total_rating(self):
         all_reviews = self.reviews.all()
         all_ratings = 0
-        for review in all_reviews:
-            all_ratings += review.rating_average()
-        return all_ratings / len(all_reviews)
+        if len(all_reviews) > 0: # room을 랜덤하게 생성하려고 할 때 review가 0이면 에러가 남
+            for review in all_reviews:
+                all_ratings += review.rating_average()
+            return round(all_ratings / len(all_reviews), 2)
+        return 0
