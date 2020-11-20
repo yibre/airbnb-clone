@@ -3,6 +3,7 @@ from django.db import models
 from django_countries.fields import CountryField
 from core import models as core_models
 from users import models as user_models
+from django.urls import reverse
 
 class AbstractItem(core_models.TimeStampedModel):
     
@@ -82,6 +83,10 @@ class Room(models.Model):
     
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
+    
 
     #모든 review의 average를 얻는 방법
     # review는 room을 가지고 있고 related name을 이용해 접근함
